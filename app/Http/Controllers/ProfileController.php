@@ -15,17 +15,21 @@ class ProfileController extends Controller
     public function index()
     {
         // $profiles = DB::table('profiles')->get();
-        // $employees= DB::table('employees')->get();
-
+        
         // return view('profile', ['profiles' => $profiles,
         //                         'employees' => $employees]);
         //$profiles=Profile::find(1)->employee;
+        $employees= DB::table('employees')->get();
+
         $profiles=Profile::with('employee')->get();
         // foreach($profiles as $p){
         //     print_r($p->employee['employee_id']);
         // }
         // die();
-        return view('profile', ['profiles' => $profiles]);
+        return view('profile', [
+            'profiles' => $profiles,
+            'employees' => $employees
+            ]);
     }
 
     /**

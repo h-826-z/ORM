@@ -42,3 +42,12 @@ Route::get('/employee/profile/detail/{id}','EmployeeController@show')->name('det
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//file_export_import
+Route::post('file-import', 'EmployeeController@fileImport')->name('file-import');
+Route::get('file-export', 'EmployeeController@fileExport')->name('file-export');
+
+Route::post('file-import', 'PositionController@fileImport')->name('file-import');
+Route::get('file-export-csv', 'PositionController@fileExportCSV')->name('file-export-csv');
+Route::get('file-export-xlsx', 'PositionController@fileExportXLSX')->name('file-export-xlsx');

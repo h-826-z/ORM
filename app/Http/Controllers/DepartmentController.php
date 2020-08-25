@@ -16,7 +16,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //$departments = DB::table('departments')->paginate(5);
+       
         // $departments = DB::table('departments')
         //             ->select(DB::raw('MIN(id) as id, department_name, MIN(created_at) as created_at, MIN(updated_at) as updated_at'))
         //             ->groupBy('department_name')
@@ -26,10 +26,13 @@ class DepartmentController extends Controller
         //$departments=Department::find(1)->positions()->get();
 
         //with  dep _name 
-        $departments=Department::where('department_name','ROT')->get();
+        //$departments=Department::where('department_name','ROT')->get();
+        //use eqlo
+        // $departments=Department::get()->paginate(5);
+
         //print_r($departments); 
         //die();
-
+        $departments = DB::table('departments')->paginate(7);
         return view('department', ['departments' => $departments]);
     }
 

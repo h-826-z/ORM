@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel; 
+use App\Imports\EmployeesImport; 
+use App\Exports\EmployeesExport;
 class EmployeeController extends Controller
 {
     /**
@@ -15,13 +18,16 @@ class EmployeeController extends Controller
     public function index()
     {
         // $employees = DB::table('employees')->get();
-        // $positions= DB::table('positions')->get();
+         
         // return view('employee', ['employees' => $employees,
         //                         'positions' => $positions]);
-        
+        $positions= DB::table('positions')->get();
         $employees=Employee::with('position')->get();
 
-        return view('employee', ['employees' => $employees]);
+        return view('employee', [
+            'employees' => $employees,
+            'positions' => $positions            
+            ]);
     }
 
     /**
@@ -106,5 +112,15 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fileImport(Request $request) { 
+        Excel::import(new EmployeesImport, $request->file('file')->store('temp')); 
+        return back(); 
+    }
+
+    //file data download with .csv or .xlsx 
+    public function fileExport() { 
+        return Excel::download(new EmployeesExport, 'EmployeeList.csv'); 
     }
 }

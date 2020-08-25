@@ -39,8 +39,8 @@
                 <div class="form-group">
                     <label for="profile">Employee Name</label>
                     <select class="@error('employee_id') is-invalid @enderror" id="employee_id" name="employee_id">
-                        @foreach($profiles as $employee)
-                            <option   value="{{$employee->employee['id']}}">{{$employee->employee['name']}}</option>
+                        @foreach($employees as $employee)
+                            <option   value="{{$employee->id}}">{{$employee->name}}</option>
 
                         @endforeach
                     </select>

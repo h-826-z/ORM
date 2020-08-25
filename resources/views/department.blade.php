@@ -50,6 +50,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="row">
+            {{$departments->links()}}
+        </div>
         
     </div>
 @endsection
