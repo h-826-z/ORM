@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel; 
 use App\Imports\PositionsImport; 
 use App\Exports\PositionsExport;
+use PDF;
 class PositionController extends Controller
 {
     /**
@@ -123,5 +124,12 @@ class PositionController extends Controller
     //file data download with .xlsx
     public function fileExportXLSX() { 
         return Excel::download(new PositionsExport, 'PositionList.xlsx'); 
+    }
+    public function createPDF()
+    {
+        $data=Position::with('department')->get();
+        view()->share('position',$data);
+        $pdf=PDF::loadView('position_pdf',$data);
+        return $pdf->download('position_pdf.pdf');
     }
 }

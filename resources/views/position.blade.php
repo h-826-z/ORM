@@ -5,7 +5,7 @@
             <h1>Add Position</h1>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-7">
                 <form action="position" method="post">
                     @csrf
                     @if ($errors->any())
@@ -37,7 +37,10 @@
                     <button type="submit" class="btn btn-primary">Add</button>
                 </form>
             </div>
-            <div class="col-md-4">
+        </div>
+        <hr>
+        <div class="row" style="margin-top:30px">
+        <div class="col-md-3">
                 <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
@@ -49,14 +52,17 @@
                     <button class="btn btn-primary">Import data</button>
                 </form>
             </div>
-            <div class="col-md-2"> 
+            <div class="col-md-3" style="text-align: right;" > 
                 <a class="btn btn-success" href="{{ route('file-export-csv') }}">Export data(CSV)</a> 
             </div>
-            <div class="col-md-2"> 
+            <div class="col-md-3" style="text-align: right;"> 
                 <a class="btn btn-success" href="{{ route('file-export-xlsx') }}">Export data(XLSX)</a>
             </div>
-            
+            <div class="col-md-3" style="text-align: right;"> 
+                <a class="btn btn-primary" href="{{ URL::to('/position/pdf') }}">Export to PDF</a>
+            </div>
         </div>
+        <hr>
         <div class="row">
             <table class="table table-responsive common-table">
                 <thead>

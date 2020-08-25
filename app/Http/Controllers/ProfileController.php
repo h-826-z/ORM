@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 class ProfileController extends Controller
 {
     /**
@@ -113,5 +114,12 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function createPDF()
+    {
+        $data=Profile::with('employee')->get();
+        view()->share('profile',$data);
+        $pdf=PDF::loadView('profile_pdf',$data);
+        return $pdf->download('profile_pdf.pdf');
     }
 }

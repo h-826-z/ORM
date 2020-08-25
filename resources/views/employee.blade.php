@@ -6,7 +6,7 @@
             <h1>Add new Employee</h1>
         </div>
         <div class="row">
-            <div class="col-md-6"> 
+            <div class="col-md-4"> 
                 <form action="employee" method="post">
                     @csrf
                     @if ($errors->any())
@@ -62,7 +62,7 @@
                     <button type="submit" class="btn btn-primary">Add</button>
                 </form>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
@@ -74,8 +74,11 @@
                     <button class="btn btn-primary">Import data</button>
                 </form>
             </div>
-            <div class="col-md-3"> 
+            <div class="col-md-2"> 
                 <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary" href="{{ URL::to('/employee/pdf') }}">Export to PDF</a>
             </div>
 
            

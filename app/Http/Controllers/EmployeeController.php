@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel; 
 use App\Imports\EmployeesImport; 
 use App\Exports\EmployeesExport;
+use PDF;
 class EmployeeController extends Controller
 {
     /**
@@ -122,5 +123,18 @@ class EmployeeController extends Controller
     //file data download with .csv or .xlsx 
     public function fileExport() { 
         return Excel::download(new EmployeesExport, 'EmployeeList.csv'); 
+    }
+
+
+    // Generate PDF 
+    public function createPDF() { 
+        // retreive all records from db 
+        //$data = Employee::all();
+        $data= Employee::with('position')->get();
+        // share data to view 
+        view()->share('employee',$data); 
+        $pdf = PDF::loadView('employee_pdf', $data);
+         // download PDF file with download method 
+         return $pdf->download('pdf_file.pdf'); 
     }
 }

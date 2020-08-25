@@ -51,3 +51,8 @@ Route::get('file-export', 'EmployeeController@fileExport')->name('file-export');
 Route::post('file-import', 'PositionController@fileImport')->name('file-import');
 Route::get('file-export-csv', 'PositionController@fileExportCSV')->name('file-export-csv');
 Route::get('file-export-xlsx', 'PositionController@fileExportXLSX')->name('file-export-xlsx');
+
+//file_pdf
+Route::get('/employee/pdf','EmployeeController@createPDF');
+Route::get('/position/pdf','PositionController@createPDF');
+Route::get('/profile/pdf','ProfileController@createPDF');
