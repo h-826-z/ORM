@@ -45,6 +45,11 @@
                                     <td>{{ $emp->position['position_name'] }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Department Name</td>
+                                    <!-- join three table (profile,position,department) -->
+                                    <td>{{ $emp->position->department['department_name'] }}</td>
+                                </tr>
+                                <tr>
                                     <td>Email</td>
                                     <td>{{$emp->email}}</td>
                                 </tr>
